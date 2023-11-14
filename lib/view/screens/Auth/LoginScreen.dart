@@ -63,8 +63,9 @@ class LoginScreen extends StatelessWidget {
                                 return validInput(val!, "Password");
                               },
                               onTapIcon: () {
-                                controller.showPassword();
                                 controller.changeIcon();
+                                controller.showPassword();
+
                               },
                               isNumber: false,
                               obscureText: controller.isShowPassword,
