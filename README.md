@@ -1,6 +1,7 @@
 # sneakerapp
 
 A new Flutter project.
+Complete ecommerce project with backend and clean cod and getx statemangment
 
 ## Getting Started
 
