@@ -25,105 +25,108 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: HandlingDataRequest(
-        statusRequest: controller.statusRequest,
-        widget: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.h),
-          child: Form(
-            key: controller.formState,
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: [
-                      const CustomTextBody(
-                        headText: 'Hello Again!',
-                        bodyText:
-                        'Fill Your Details Or Continue With \n Social Media',
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(11.h),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextField(
-                              valid: (val) {
-                                return validInput(val!, "Email");
-                              },
-                              controller: controller.email,
-                              titleText: 'Email Address',
-                              isNumber: false,
-                            ),
-                            SizedBox(
-                              height: 6.h,
-                            ),
-                            CustomTextField(
-                              valid: (val) {
-                                return validInput(val!, "Password");
-                              },
-                              onTapIcon: () {
-                                controller.changeIcon();
-                                controller.showPassword();
-
-                              },
-                              isNumber: false,
-                              obscureText: controller.isShowPassword,
-                              controller: controller.password,
-                              titleText: 'Password',
-                              suffixIcon: controller.iconPass,
-                            ),
-                            SizedBox(
-                              height: 4.h,
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: InkWell(
-                                onTap: () {
-                                  controller.goToRecoveryPassword();
+      body: GetBuilder<LoginControllerImpl>(
+        builder: (controller) =>HandlingDataRequest(
+          statusRequest: controller.statusRequest,
+          widget: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.h),
+            child: Form(
+              key: controller.formState,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        const CustomTextBody(
+                          headText: 'Hello Again!',
+                          bodyText:
+                          'Fill Your Details Or Continue With \n Social Media',
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(11.h),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomTextField(
+                                valid: (val) {
+                                  return validInput(val!, "Email");
                                 },
-                                child: Text(
-                                  'Recovery Password',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 27.sp,
-                                    color: Colors.grey,
+                                controller: controller.email,
+                                titleText: 'Email Address',
+                                isNumber: false,
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              CustomTextField(
+                                valid: (val) {
+                                  return validInput(val!, "Password");
+                                },
+                                onTapIcon: () {
+                                  print('1');
+                                  controller.toggleShowPassword();
+
+                                },
+                                isNumber: false,
+                                obscureText: controller.isShowPassword,
+                                controller: controller.password,
+                                titleText: 'Password',
+                                suffixIcon: controller.showPasswordIcon,
+                              ),
+                              SizedBox(
+                                height: 4.h,
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.goToRecoveryPassword();
+                                  },
+                                  child: Text(
+                                    'Recovery Password',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 27.sp,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 9.h,
-                            ),
-                            CustomButtonAuth(
-                              textButton: 'Sign In',
-                              onPressed: () {
-                                controller.login();
-                              },
-                            ),
-                            SizedBox(
-                              height: 9.h,
-                            ),
-                            const CustomAuthWithGoogle(
-                              textButton: 'Sign In With Google',
-                            )
-                          ],
+                              SizedBox(
+                                height: 9.h,
+                              ),
+                              CustomButtonAuth(
+                                textButton: 'Sign In',
+                                onPressed: () {
+                                  controller.login();
+                                },
+                              ),
+                              SizedBox(
+                                height: 9.h,
+                              ),
+                              const CustomAuthWithGoogle(
+                                textButton: 'Sign In With Google',
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                CustomAuthRow(
-                  text: 'New User?',
-                  textButton: 'Create Account',
-                  onPressed: () {
-                    controller.goToSignup();
-                  },
-                )
-              ],
+                  CustomAuthRow(
+                    text: 'New User?',
+                    textButton: 'Create Account',
+                    onPressed: () {
+                      controller.goToSignup();
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),
+
       ),
     );
   }

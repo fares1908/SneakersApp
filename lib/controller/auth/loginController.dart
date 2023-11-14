@@ -18,21 +18,20 @@ class LoginControllerImpl extends LoginController {
   StatusRequest statusRequest = StatusRequest.none;
   LoginData loginData = LoginData(Get.find());
   late TextEditingController password;
-  bool isShowPassword = true;
-  MyServices services = Get.find();
-  IconData iconPass = Icons.visibility_off_outlined;
-  GlobalKey<FormState> formState = GlobalKey<FormState>();
-  showPassword() {
-    isShowPassword = isShowPassword == true ? false : true;
-    update();
-  }
 
-  changeIcon() {
-    iconPass = isShowPassword == true
+  MyServices services = Get.find();
+  IconData showPasswordIcon = Icons.visibility_off_outlined;
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+  bool isShowPassword = true;
+
+  void toggleShowPassword() {
+    isShowPassword = !isShowPassword;
+    showPasswordIcon = isShowPassword
         ? Icons.visibility_off_outlined
         : Icons.visibility_outlined;
     update();
   }
+
 
   @override
   goToRecoveryPassword() {

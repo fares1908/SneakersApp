@@ -8,7 +8,9 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.suffixIcon,
       this.onTapIcon,
-      this.obscureText, required this.valid, required this.isNumber});
+      this.obscureText = false,
+      required this.valid,
+      required this.isNumber});
   final String? titleText;
   final TextEditingController? controller;
   final IconData? suffixIcon;
