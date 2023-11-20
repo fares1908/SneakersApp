@@ -19,7 +19,7 @@
    <application
         android:label="sneakerapp"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyA3R9zlDREzSBKD2Hg8GiTkFrV1sabuy9s"/>
         <activity
