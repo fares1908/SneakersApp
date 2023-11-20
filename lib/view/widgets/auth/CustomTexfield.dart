@@ -10,14 +10,16 @@ class CustomTextField extends StatelessWidget {
       this.onTapIcon,
       this.obscureText = false,
       required this.valid,
-      required this.isNumber});
+      required this.isNumber, this.text, this.readOnly=false});
   final String? titleText;
   final TextEditingController? controller;
   final IconData? suffixIcon;
   final void Function()? onTapIcon;
   final bool? obscureText;
+  final String ?text;
   final String? Function(String?) valid;
   final bool isNumber;
+  final bool ? readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class CustomTextField extends StatelessWidget {
           validator: valid,
           obscureText: obscureText ?? false,
           controller: controller,
+
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 27.sp,
@@ -51,6 +54,7 @@ class CustomTextField extends StatelessWidget {
           ),
           cursorColor: Colors.grey,
           decoration: InputDecoration(
+            hintText: text,
             suffixIcon: InkWell(
               onTap: onTapIcon,
               child: Icon(suffixIcon),
@@ -63,6 +67,7 @@ class CustomTextField extends StatelessWidget {
             filled: true,
             fillColor: Colors.grey.withOpacity(.14),
           ),
+          readOnly: readOnly ?? false,
         ),
       ],
     );

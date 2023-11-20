@@ -8,6 +8,7 @@ import 'package:sneakerapp/core/class/HandlingDataView.dart';
 import 'package:sneakerapp/core/constant/AppColor/AppColor.dart';
 import 'package:sneakerapp/core/constant/routes/AppRoute/routersName.dart';
 import 'package:sneakerapp/core/functions/validation.dart';
+import 'package:sneakerapp/core/services/services.dart';
 import 'package:sneakerapp/stripe_payment/paymentManger.dart';
 import 'package:sneakerapp/view/widgets/auth/CustomTexfield.dart';
 import 'package:sneakerapp/view/widgets/auth/customButtonAuth.dart';
@@ -23,6 +24,7 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
+    MyServices services = Get.find();
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
@@ -46,7 +48,7 @@ class _UserScreenState extends State<UserScreen> {
           ),
         ),
         title: const Text(
-          'Orders',
+          'Profile',
           style: TextStyle(
               fontFamily: 'Raleway',
               fontWeight: FontWeight.w700,
@@ -70,7 +72,8 @@ class _UserScreenState extends State<UserScreen> {
                       return validInput(val!, "Username");
                     },
                     titleText: 'Your Name',
-                    // controller: controller.name,
+                    text: '${services.sharedPreferences.getString('username')!.toUpperCase()}',
+                  readOnly: true,
                     isNumber: false,
                   ),
                   SizedBox(
@@ -81,8 +84,11 @@ class _UserScreenState extends State<UserScreen> {
                       return validInput(val!, "Username");
                     },
                     titleText: 'Your Email',
+                    text: '${services.sharedPreferences.getString('email')!.toUpperCase()}',
+                        readOnly: true,
                     // controller: controller.name,
                     isNumber: false,
+
                   ),
                   SizedBox(
                     height: 6.h,
@@ -91,9 +97,30 @@ class _UserScreenState extends State<UserScreen> {
                     valid: (val) {
                       return validInput(val!, "Username");
                     },
+                    text: '*********',
+                    readOnly: true,
                     titleText: 'Your Password',
                     // controller: controller.name,
                     isNumber: false,
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () {
+                        Get.offNamed(AppRouter.forgetPassword);
+                      },
+                      child: Text(
+                        'Recovery Password',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 27.sp,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
