@@ -38,8 +38,8 @@ class _CheckOutState extends State<CheckOut> {
         backgroundColor: Colors.grey[100],
         bottomNavigationBar: GetBuilder<CheckOutController>(
           builder: (controller) => Container(
-              padding: const EdgeInsets.all(8),
-              height: 60,
+              padding: const EdgeInsets.all(10),
+              height: 70,
               child: CustomButtonAuth(
                 onPressed: () async {
                   if (controller.addressid != "0" ||
