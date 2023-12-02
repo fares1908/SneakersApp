@@ -17,7 +17,7 @@
         </intent>
     </queries>
    <application
-        android:label="sneakerapp"
+        android:label="Sneaker App"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
        <meta-data android:name="com.google.android.geo.API_KEY"
